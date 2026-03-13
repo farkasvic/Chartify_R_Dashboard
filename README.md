@@ -20,3 +20,16 @@ To run this application on your own machine, you will need R and RStudio install
 Open your R console and run the following command to install the necessary libraries:
 ```R
 install.packages(c("shiny", "bslib", "dplyr", "ggplot2", "bsicons"))
+```
+
+### 2. Download the Repository
+Clone or download this repository to your local machine, and extract the files if necessary.
+
+### 3. Run the Application
+1. Open the `app.R` file in RStudio.
+2. **Important:** Ensure your R session's working directory is set to the folder containing `app.R`. This allows the app to correctly locate the dataset using the relative path (`data/spotify_clean.csv`).
+3. Click the **Run App** button in the top right corner of the RStudio script editor, or type the following command into your R console and hit enter:
+
+```R
+shiny::runApp()
+```
