@@ -41,13 +41,24 @@ server <- function(input, output, session) {
   output$avg_streams <- renderText({
     data <- filtered_data()
     req(nrow(data) > 0)
-    avg <- mean(data$Stream, na.rm = TRUE)
-    paste0(formatC(avg, format = "f", digits = 0, big.mark = ","))
+    
+    # Remove commas, convert to numeric, and divide by 1 Million
+    streams_clean <- as.numeric(gsub(",", "", data$Stream))
+    avg <- mean(streams_clean, na.rm = TRUE) / 1000000
+    
+    #format the metric to millions
+    paste0(formatC(avg, format = "f", digits = 2, big.mark = ","), " M")
   })
   
   #output 2
   output$scatter_plot <- renderPlot({
-    ggplot(filtered_data(), aes(x = Danceability, y = Stream)) +
+    data <- filtered_data()
+    req(nrow(data) > 0)
+    
+    # Clean the data and convert streams to millions for the plot
+    data$Stream <- as.numeric(gsub(",", "", data$Stream)) / 1000000
+    
+    ggplot(data, aes(x = Stream, y = Danceability)) +
       geom_point(color = "#1DB954", size = 5, alpha = 0.8) +
       theme_minimal(base_size = 14) +
       theme(
@@ -58,7 +69,7 @@ server <- function(input, output, session) {
         panel.grid.major = element_line(color = "gray30"),
         panel.grid.minor = element_blank()
       ) +
-      labs(x = "Danceability", y = "Total Streams")
+      labs(x = "Total Streams (Millions)", y = "Danceability")
   })
 }
 
