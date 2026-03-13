@@ -3,7 +3,7 @@
 This repository contains an individual assignment to re-implement the Chartify dashboard using R Shiny. 
 The application explores a cleaned Spotify dataset, allowing users to filter music data by artist and visualize their streaming metrics and audio features.
 
-**Live Application:** [Insert your Posit Connect Cloud URL here]
+**Live Application:** https://019ce8ac-35dc-b51c-3bc8-55c5e216d457.share.connect.posit.cloud/
 
 ## Features
 This simplified dashboard contains:
