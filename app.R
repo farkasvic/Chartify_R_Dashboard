@@ -10,6 +10,7 @@ ui <- page_sidebar(
   title = "Chartify R Deployement",
   theme = bs_theme(bootswatch = "darkly", primary = "#1DB954"), 
   
+  #input
   sidebar = sidebar(
     selectInput("artist", "Select Artist:", choices = unique(df$Artist))
   ),
@@ -40,13 +41,13 @@ server <- function(input, output, session) {
   output$avg_streams <- renderText({
     data <- filtered_data()
     req(nrow(data) > 0)
-    avg <- mean(data$Streams, na.rm = TRUE)
+    avg <- mean(data$Stream, na.rm = TRUE)
     paste0(formatC(avg, format = "f", digits = 0, big.mark = ","))
   })
   
   #output 2
   output$scatter_plot <- renderPlot({
-    ggplot(filtered_data(), aes(x = Danceability, y = Streams)) +
+    ggplot(filtered_data(), aes(x = Danceability, y = Stream)) +
       geom_point(color = "#1DB954", size = 5, alpha = 0.8) +
       theme_minimal(base_size = 14) +
       theme(
