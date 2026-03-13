@@ -3,7 +3,7 @@ library(bslib)
 library(dplyr)
 library(ggplot2)
 
-df <- read.csv('/Users/victoriafarkas/Library/CloudStorage/OneDrive-UBC/MDS/Block 5/532/532 R Dashboard/data/spotify_clean.csv')
+df <- read.csv('data/spotify_clean.csv')
 
 
 ui <- page_sidebar(
